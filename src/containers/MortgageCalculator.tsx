@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useCallback } from "react";
 import API from '../Api';
 import Header from '../components/Header';
 import Body from '../components/Body';
@@ -116,7 +116,10 @@ function MortgageCalculator() {
       state.mortgageData.rate && 
       getFloat(state.mortgageData.rate) > 0 &&
       state.mortgageData.term > 0) {
-        calculateAmount(getFloat(state.mortgageData.principle), getFloat(state.mortgageData.rate), state.mortgageData.term);
+        const payment = calculateAmount(getFloat(state.mortgageData.principle), getFloat(state.mortgageData.rate), state.mortgageData.term);
+        if (payment && state.calculated !== payment) {
+          dispatch({type: 'setMonthly', payload: payment});
+        }
       }
   }, [state.mortgageData]);
 
@@ -155,11 +158,11 @@ function MortgageCalculator() {
     const terms : number = +term * 12;
     const downpaymentAmount = state.mortgageData.monthlyAmount ? getFloat(state.mortgageData.monthlyAmount) : '';
     const downpaymentTerms = state.mortgageData.monthlyTotal ? state.mortgageData.monthlyTotal : '';
+
     if (downpaymentAmount && downpaymentTerms) {
       amount -= (downpaymentAmount * downpaymentTerms);
     }
     const payment = amount * interest * (Math.pow(1 + interest, terms)) / (Math.pow(1 + interest, terms) - 1);
-    dispatch({type: 'setMonthly', payload: payment});
 
     return payment;
   }

@@ -237,9 +237,11 @@ function MortgageCalculator() {
                         data-testid="mortgageTerm"
                         id="mortgageTerm" 
                         className={`form-control mb-4 fs-exclude ${state.mortgageData.principle && state.mortgageData.rate && state.mortgageData.term === 0 ? 'error' : ''}`}  
-                        aria-required="true" 
+                        aria-required="true"
                         value={state.mortgageData.term}
                         onFocus={() => clearBanner(showBannerTerms)} 
+                        required
+                        aria-label="Payment period [10, 15, 20, 30, 50] years*"
                         onChange={(event) => dispatch({type: 'setMortgage', payload: {...state.mortgageData, term: parseFloat(event.target.value)}})}>
                           <option value="0" disabled>Payment period [10, 15, 20, 30, 50] years*</option>
                           {mortgateTerms && mortgateTerms.map((term, key) => 
@@ -290,6 +292,7 @@ function MortgageCalculator() {
                         id="mortgageMonthlyDownPaymentTerms" 
                         className="form-control mb-4 fs-exclude" 
                         value={state.mortgageData.monthlyTotal} 
+                        aria-label="Total months of savings [ex. 1 month to 5 years]"
                         onChange={(event) => dispatch({type: 'setMortgage', payload: {...state.mortgageData, monthlyTotal: parseFloat(event.target.value)}})}>
                           {monthlyTerms && monthlyTerms.map((term, key) => 
                             (term === 0) ? <option value="0" key={key} disabled>Total months of savings [ex. 1 month to 5 years]</option> : <option value={term}key={key}>{term} months</option>

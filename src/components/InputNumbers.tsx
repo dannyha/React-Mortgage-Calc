@@ -56,7 +56,8 @@ export default function InputNumbers(props: InputNumbers) {
       id={props.id}
       onBlur={props.handler}
       value={props.value}
-      aria-required="true"
+      aria-label={props.placeholder}
+      aria-required={props.required}
       required={props.required}
     />
   );

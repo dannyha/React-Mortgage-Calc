@@ -1,3 +1,42 @@
+# This project leverages the Create React App project. #
+
+-------------------------------------------------------------------------------------------------------
+
+# Project Structure
+
+## Folders
+/src/components - Contains reusable components
+/src/containers - Contains Mortgage Calculator page
+
+-------------------------------------------------------------------------------------------------------
+
+# Installation
+
+npm install
+
+
+Available scripts to run below.
+
+-------------------------------------------------------------------------------------------------------
+
+# Mortgage Formula
+
+Monthly Payment = Principle [ Interest(1 + Interest)^Terms ] / [ (1 + Interest)^Terms – 1]
+
+-------------------------------------------------------------------------------------------------------
+
+# Usage
+
+1. Input Principle amount
+2. Select Terms of payment
+3. Update Interest rate (defaults to 2.75% coming from mock API)
+4. (Optional) Add Monthly downpayment amount
+5. (Optional) Add Monthly downpayment terms
+6. Monthly payment of mortgage is updated and displayed on the bottom
+7. Click 'Continue' to submit data (post to mock API)
+
+-------------------------------------------------------------------------------------------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

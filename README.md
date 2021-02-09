@@ -5,7 +5,7 @@
 # Project Structure
 
 ## Folders
-/src/components - Contains reusable components
+/src/components - Contains reusable components\
 /src/containers - Contains Mortgage Calculator page
 
 -------------------------------------------------------------------------------------------------------

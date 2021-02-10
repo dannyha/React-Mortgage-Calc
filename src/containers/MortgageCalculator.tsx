@@ -183,11 +183,6 @@ function MortgageCalculator() {
     return parseFloat(value.replace(/\$/g,'').replace(/\%/g,'').replace(/\,/g,''));
   }
 
-  //Clear timeout helper
-  const clearBanner = (variable: number) => {
-    clearTimeout(variable);
-  }
-
   return (
     <React.Fragment>
 
@@ -242,7 +237,7 @@ function MortgageCalculator() {
                         className={`form-control mb-4 fs-exclude ${state.mortgageData.principle && state.mortgageData.rate && state.mortgageData.term === 0 ? 'error' : ''}`}  
                         aria-required="true"
                         value={state.mortgageData.term}
-                        onFocus={() => clearBanner(showBannerTerms)} 
+                        onFocus={() => clearTimeout(showBannerTerms)} 
                         required
                         aria-label="Payment period [10, 15, 20, 30, 50] years*"
                         onChange={(event) => dispatch({type: 'setMortgage', payload: {...state.mortgageData, term: parseFloat(event.target.value)}})}>

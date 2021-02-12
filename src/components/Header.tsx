@@ -7,11 +7,11 @@ export default function Header(): React.ReactElement {
     <header className="app-header">
       <nav className="navbar">
         <div className="navbar-icon tooltip-target">
-          <img
+          {/* <img
             src="https://app.meettally.com/webapp/img/tally-icon.a54f733a.svg"
             alt="Tally"
             className="nav-brand"
-          />
+          /> */}
         </div>
         <div className="navbar-title hidden">Mortgage Calculator</div>
         <div>

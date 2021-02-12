@@ -1,12 +1,12 @@
-import './App.css';
-import MortgageCalculator from './containers/MortgageCalculator';
+import "./App.css";
+import MortgageCalculator from "./containers/MortgageCalculator";
 
-function App() {
+const App: React.FC = (): React.ReactElement => {
   return (
     <div className="app">
       <MortgageCalculator />
     </div>
-  )
-}
+  );
+};
 
 export default App;

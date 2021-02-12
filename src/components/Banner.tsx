@@ -8,16 +8,28 @@ type Banner = {
   /** Text */
   text: string;
   /** Icon */
-  icon: boolean
+  icon: boolean;
   /** Id */
-  id?: string
+  id?: string;
 };
 
-export default function Banner(props: Banner) {
+export default function Banner(props: Banner): React.ReactElement {
+  const { classes, text, icon, id } = props;
   return (
-    <div data-testid={props.id} role="alert" className={`text-center ${props.classes ? props.classes : ""}`}>
-      {props.icon && <img src="https://app.meettally.com/webapp/img/alert-icon.ac7d6114.svg" className="alert-icon" />}
-      <div className="alert-text">{props.text}</div>
+    <div data-testid={id} role="alert" className={`text-center ${classes}`}>
+      {icon && (
+        <img
+          src="https://app.meettally.com/webapp/img/alert-icon.ac7d6114.svg"
+          className="alert-icon"
+          alt="Warning"
+        />
+      )}
+      <div className="alert-text">{text}</div>
     </div>
   );
 }
+
+Banner.defaultProps = {
+  classes: "",
+  id: "",
+};

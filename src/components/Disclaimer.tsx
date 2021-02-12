@@ -1,4 +1,3 @@
-import React from "react";
 /**
  * Disclaimer component
  */
@@ -10,17 +9,28 @@ type Disclaimer = {
   text: string;
 };
 
-export default function Disclaimer(props: Disclaimer) {
+export default function Disclaimer(props: Disclaimer): React.ReactElement {
+  const { classes, text } = props;
   return (
-    <React.Fragment>
+    <>
       <div className="row justify-content-center">
-        <img src="https://app.meettally.com/webapp/img/shield.f7173d06.svg" className="mb-2" />
+        <img
+          src="https://app.meettally.com/webapp/img/shield.f7173d06.svg"
+          className="mb-2"
+          alt="Warning"
+        />
       </div>
       <div className="row justify-content-center text-center">
         <div className="col-md-6">
-          <p data-qa="ssl-encryption"><small>{props.text}</small></p>
+          <p data-qa="ssl-encryption">
+            <small>{text}</small>
+          </p>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
+
+Disclaimer.defaultProps = {
+  classes: "",
+};

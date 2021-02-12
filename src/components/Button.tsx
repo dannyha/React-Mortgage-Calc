@@ -6,7 +6,7 @@ type Button = {
   /** Class modifiers */
   classes?: string;
   /** Handler */
-  handler?: () => void;
+  handler: () => void;
   /** Text */
   text: string;
   /** Disabled */
@@ -15,16 +15,23 @@ type Button = {
   id?: string;
 };
 
-export default function Button(props: Button) {
+export default function Button(props: Button): React.ReactElement {
+  const { classes, handler, text, disabled, id } = props;
   return (
-    <button 
-      data-testid={props.id}
+    <button
+      data-testid={id}
       type="submit"
-      className={`btn btn-primary btn-block ${props.classes ? props.classes : ""}`} 
-      disabled={props.disabled}
-      onClick={props.handler}
+      className={`btn btn-primary btn-block ${classes}`}
+      disabled={disabled}
+      onClick={handler}
     >
-      {props.text}
+      {text}
     </button>
   );
 }
+
+Button.defaultProps = {
+  classes: "",
+  disabled: false,
+  id: "",
+};

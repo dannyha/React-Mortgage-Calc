@@ -7,7 +7,7 @@ export interface MortgageDataSuccess {
 }
 
 async function wait(ms: number) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }
@@ -19,18 +19,19 @@ const API = {
   async interestRate(): Promise<InterestRate> {
     await wait(1000);
     return Promise.resolve({
-      rate: 2.75
+      rate: 2.75,
     });
   },
   /**
    * Returns a list of all jobs in the system.
    */
-  async mortgageData(data: any): Promise<MortgageDataSuccess> {
+  async mortgageData(data: unknown): Promise<MortgageDataSuccess> {
     await wait(1000);
     return Promise.resolve({
-      success: true
+      data,
+      success: true,
     });
-  }
+  },
 };
 
 export default API;

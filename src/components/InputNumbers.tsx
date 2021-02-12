@@ -1,5 +1,6 @@
-import MaskedInput from 'react-text-mask';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+import { ChangeEvent } from "react";
+import MaskedInput from "react-text-mask";
+import createNumberMask from "text-mask-addons/dist/createNumberMask";
 
 /**
  * Input Numbers component
@@ -9,9 +10,9 @@ type InputNumbers = {
   /** Class modifiers */
   classes?: string;
   /** Handler */
-  handler: (event: any) => void;
+  handler: (event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Value */
-  value: any;
+  value: string | undefined;
   /** Placeholder */
   placeholder: string;
   /** Id */
@@ -28,37 +29,59 @@ type InputNumbers = {
   limit?: number;
 };
 
-export default function InputNumbers(props: InputNumbers) {
+export default function InputNumbers(props: InputNumbers): React.ReactElement {
+  const {
+    classes,
+    handler,
+    value,
+    placeholder,
+    id,
+    error,
+    required,
+    prefix,
+    suffix,
+    limit,
+  } = props;
+
   const maskOptions = {
-    prefix: props.prefix ? props.prefix : '',
-    suffix: props.suffix ? props.suffix : '',
+    prefix,
+    suffix,
     includeThousandsSeparator: true,
-    thousandsSeparatorSymbol: ',',
+    thousandsSeparatorSymbol: ",",
     allowDecimal: true,
-    decimalSymbol: '.',
+    decimalSymbol: ".",
     decimalLimit: 2,
-    integerLimit: props.limit ? props.limit : 9,
+    integerLimit: limit,
     allowNegative: false,
     allowLeadingZeroes: false,
-  }
+  };
 
   const inputMask = createNumberMask({
-    ...maskOptions
+    ...maskOptions,
   });
 
   return (
     <MaskedInput
       mask={inputMask}
-      className={`input-currency form-control mb-4 fs-exclude ${props.error ? 'error' : ''}`} 
-      placeholder={props.placeholder}
+      className={`input-currency form-control mb-4 fs-exclude ${error}`}
+      placeholder={placeholder}
       guide={false}
-      data-testid={props.id}
-      id={props.id}
-      onBlur={props.handler}
-      value={props.value}
-      aria-label={props.placeholder}
-      aria-required={props.required}
-      required={props.required}
+      data-testid={id}
+      id={id}
+      onBlur={handler}
+      value={value}
+      aria-label={placeholder}
+      aria-required={required}
+      required={required}
     />
   );
 }
+
+InputNumbers.defaultProps = {
+  classes: "",
+  error: false,
+  required: false,
+  prefix: "",
+  suffix: "",
+  limit: 9,
+};
